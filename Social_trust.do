@@ -90,9 +90,15 @@ foreach p in 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 {
 
 *Function: mean
 
+*svyset CONGLOME [pweight=FAMIEGOB07], strata(ESTRATO)
+
+*svy: mean d_01
+
+*collapse (mean) d_01 [iw=FAMIEGOB07]
+
 collapse (mean) d_* [iw=FAMIEGOB07], by (region)
 
-*Lables
+*Labels
 rename d_01 JNE
 
 rename d_02 ONPE
@@ -135,15 +141,66 @@ rename d_20 SUNAT
 
 rename d_21 Comisión_Anticorrupción
 
+
+label var JNE JNE
+
+label var ONPE ONPE
+
+label var RENIEC RENIEC
+
+label var Prov Prov
+
+label var Dist Dist
+
+label var PNP PNP
+
+label var FFAA FFAA
+
+label var Nac Nac
+
+label var PJ PJ
+
+label var MINEDU MINEDU
+
+label var Defens Defens
+
+label var Congreso Congreso
+
+label var Partidos Partidos
+
+label var Prensa_Escrita Prensa_Escrita
+
+label var Radio_Televisión Radio_Televisión
+
+label var Iglesia_Católica Iglesia_Católica
+
+label var Procuradoría Procuradoría
+
+label var Fiscalía Fiscalía
+
+label var Contraloría Contraloría
+
+label var SUNAT SUNAT
+
+label var Comisión_Anticorrupción Comisión_Anticorrupción
+
 *Graphs
 
 global var JNE ONPE RENIEC Prov Dist PNP FFAA Nac PJ  MINEDU Defens  Congreso Partidos Prensa_Escrita Radio_Televisión Iglesia_Católica Procuradoría Fiscalía Contraloría SUNAT Comisión_Anticorrupción
 
-foreach x of global var {
-graph hbar `x', by(region)
-}
+graph hbar $var
 
-graph hbar RENIEC Prov Dist Nac Defens Iglesia_Católica, by(region)
+global var1 RENIEC Iglesia_Católica MINEDU FFAA Radio_Televisión Defens PNP Dist Prensa_Escrita Prov Nac Congreso Partidos
+
+graph hbar $var1, legend(size(tiny) cols(7) rowgap(0.5) colgap(0.5) symysize(1) symxsize(1)) 
+
+graph hbar RENIEC Iglesia_Católica MINEDU FFAA Radio_Televisión Defens PNP Dist Prensa_Escrita Prov Nac Congreso Partidos,  by(region) legend(size(minuscule))
+
+#delimit ;
+
+ legend(label (1 "JNE") 
+
+;
 
 
 
