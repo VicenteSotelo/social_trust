@@ -273,7 +273,24 @@ global var1 RENIEC Iglesia_Católica MINEDU FFAA Radio_Televisión Defens PNP 
 
 graph hbar $var1 
 
-if region>=1 & region<=12
+if region>=1 & region<=12, by(region, note("Fuente: Módulo -ENAHO") caption("Preguntas P22-P11") )
+
+legend(label (1 "RENIEC") label (2 "Iglesia_Católica") label(3 "MINEDU")  label(4 "FFAA") label (5 "Radio_Televisión") label(6 "Defensoria") label( 7 "PNP") 
+
+			  label(8 "Distrital") label (9 "Prensa_Escrita") label (10 "Provincial") label(11 "Nacional") label(12 "Congreso") label(13 "Partidos_Políticos")
+	
+	  size(small) cols(7) rowgap(0.5) colgap(0.5) symysize(2) symxsize(2) )
+
+;
+
+
+*Graph 2
+
+#delimit ;
+
+graph hbar $var1 
+
+if region>=13 & region<=25
 
 , by(region, note(""))
 
@@ -282,53 +299,12 @@ legend(label (1 "RENIEC") label (2 "Iglesia_Católica") label(3 "MINEDU")  labe
 
 			  label(8 "Distrital") label (9 "Prensa_Escrita") label (10 "Provincial") label(11 "Nacional") label(12 "Congreso") label(13 "Partidos_Políticos")
 
-	size(tiny) cols(7) rowgap(0.5) colgap(0.5) symysize(1) symxsize(1))  
+	
+	  size(small) cols(7) rowgap(0.5) colgap(0.5) symysize(2) symxsize(2))  
 
-note(" ") 
 ;
 
 
-
-*Graph 1
-
-#delimit ;
-
-graph hbar $var1 
-
-if region=="AMAZONAS" | region=="ANCASH" | region=="APURIMAC " | region=="AREQUIPA" |  region=="AYACUCHO" | region=="CAJAMARCA"  | region=="CALLAO"
-
-	| region=="CUSCO" | region=="HUANCAVELICA" | region=="HUANUCO"
-
-
-, by(region) 
-
-legend(label (1 "RENIEC") label (2 "Iglesia_Católica") label(3 "MINEDU")  label(4 "FFAA") label (5 "Radio_Televisión") label(6 "Defensoria") label( 7 "PNP") 
-
-			  label(8 "Distrital") label (9 "Prensa_Escrita") label (10 "Provincial") label(11 "Nacional") label(12 "Congreso") label(13 "Partidos_Políticos")
-
-	size(tiny) cols(7) rowgap(0.5) colgap(0.5) symysize(1) symxsize(1))  
-;
-
-*Graph 2
-
-
-#delimit ;
-
-graph hbar $var1 
-
-if region=="ICA" | region=="JUNIN" | region=="LA LIBERTAD " | region=="LAMBAYEQUE |  region=="LIMA" | region=="LORETO"  | region=="CALLAO"
-
-	| region=="CUSCO" | region=="HUANCAVELICA" | region=="HUANUCO"
-
-
-, by(region) 
-
-legend(label (1 "RENIEC") label (2 "Iglesia_Católica") label(3 "MINEDU")  label(4 "FFAA") label (5 "Radio_Televisión") label(6 "Defensoria") label( 7 "PNP") 
-
-			  label(8 "Distrital") label (9 "Prensa_Escrita") label (10 "Provincial") label(11 "Nacional") label(12 "Congreso") label(13 "Partidos_Políticos")
-
-	size(tiny) cols(7) rowgap(0.5) colgap(0.5) symysize(1) symxsize(1))  
-;
 
 
 
