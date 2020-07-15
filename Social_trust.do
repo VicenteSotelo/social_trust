@@ -23,7 +23,84 @@ use "/Users/luisvicentesotelofarfan/Google Drive/III.ComponenteProfesional/Repo/
 
 *Domine: Region
 
+gen region=1				if UBIGEO>=1 & UBIGEO<=51
 
+replace region=2			if UBIGEO>=52 & UBIGEO<=128
+
+replace region=3			if UBIGEO>=129 & UBIGEO<=187
+
+replace region=4			if UBIGEO>=188 & UBIGEO<=252
+
+replace region=5			if UBIGEO>=253 & UBIGEO<=325
+
+replace region=6			if UBIGEO>=326 & UBIGEO<=404
+
+replace region=7			    if UBIGEO>=405 & UBIGEO<=411
+
+replace region=8	    		if UBIGEO>=412 & UBIGEO<=487
+
+replace region=9			if UBIGEO>=488 & UBIGEO<=552
+
+replace region=10			    if UBIGEO>=553 & UBIGEO<=617
+
+replace region=11 			    if UBIGEO>=618 & UBIGEO<=654
+
+replace region=12 	    if UBIGEO>=655 & UBIGEO<=728
+
+replace region=13 		if UBIGEO>=729 & UBIGEO<=789
+
+replace region=14			    if UBIGEO>=790 & UBIGEO<=825
+
+replace region=15		if UBIGEO>=826 & UBIGEO<=935
+
+replace region=16     if UBIGEO>=934 & UBIGEO<=977
+
+replace region=17			if UBIGEO>=978 & UBIGEO<=988
+
+replace region=18		    if UBIGEO>=989 & UBIGEO<=1007
+
+replace region=19			    if UBIGEO>=1008 & UBIGEO<=1035
+
+replace region=20 			    if UBIGEO>=1036 & UBIGEO<=1086
+
+replace region=21 	    if UBIGEO>=1087 & UBIGEO<=1153
+
+replace region= 22 			    if UBIGEO>=1154 & UBIGEO<=1212
+
+replace region=23 			if UBIGEO>=1213 & UBIGEO<=1232
+
+replace region=24 			if UBIGEO>=1233 & UBIGEO<=1245
+
+replace region=25			if UBIGEO>=1246 & UBIGEO<=1259
+
+
+label variable region "regiones" /*seting nd execution labes variable*/
+
+
+#delimit ;						/*seting label values*/
+
+label define regiones
+
+1 "AMAZONAS" 	2 "ANCASH"
+3 "APURIMAC" 	4 "AREQUIPA"
+5 "AYACUCHO" 	6 "CAJAMARCA"
+7 "CALLAO"
+8 "CUSCO" 	    9 "HUANCAVELICA"
+10 "HUANUCO" 	11 "ICA"
+12 "JUNIN"   	13 "LA LIBERTAD"
+14 "LAMBAYEQUE" 15 "LIMA"
+16 "LORETO"  	17 "MADRE DE DIOS"
+18 "MOQUEGUA"   19 "PASCO"
+20 "PIURA"   	21 "PUNO"
+22 "SAN MARTIN"  23 "TACNA"
+24 "TUMBES"  	25 "UCAYALI"
+;
+
+
+label values region regiones   /*execution label values*/
+
+
+/*
 gen region="AMAZONAS" 				if UBIGEO>=1 & UBIGEO<=51
 
 replace region="ANCASH" 			if UBIGEO>=52 & UBIGEO<=128
@@ -74,7 +151,7 @@ replace region="TUMBES" 			if UBIGEO>=1233 & UBIGEO<=1245
 
 replace region="UCAYALI" 			if UBIGEO>=1246 & UBIGEO<=1259
 
-
+*/
 
 
 * Argument: Social Trust
@@ -184,23 +261,78 @@ label var SUNAT SUNAT
 
 label var Comisión_Anticorrupción Comisión_Anticorrupción
 
-*Graphs
+*Graphs:
 
-global var JNE ONPE RENIEC Prov Dist PNP FFAA Nac PJ  MINEDU Defens  Congreso Partidos Prensa_Escrita Radio_Televisión Iglesia_Católica Procuradoría Fiscalía Contraloría SUNAT Comisión_Anticorrupción
-
-graph hbar $var
 
 global var1 RENIEC Iglesia_Católica MINEDU FFAA Radio_Televisión Defens PNP Dist Prensa_Escrita Prov Nac Congreso Partidos
 
-graph hbar $var1, legend(size(tiny) cols(7) rowgap(0.5) colgap(0.5) symysize(1) symxsize(1)) 
 
-graph hbar RENIEC Iglesia_Católica MINEDU FFAA Radio_Televisión Defens PNP Dist Prensa_Escrita Prov Nac Congreso Partidos,  by(region) legend(size(minuscule))
+*Graph 1
 
 #delimit ;
 
- legend(label (1 "JNE") 
+graph hbar $var1 
 
+if region>=1 & region<=12
+
+, by(region, note(""))
+
+
+legend(label (1 "RENIEC") label (2 "Iglesia_Católica") label(3 "MINEDU")  label(4 "FFAA") label (5 "Radio_Televisión") label(6 "Defensoria") label( 7 "PNP") 
+
+			  label(8 "Distrital") label (9 "Prensa_Escrita") label (10 "Provincial") label(11 "Nacional") label(12 "Congreso") label(13 "Partidos_Políticos")
+
+	size(tiny) cols(7) rowgap(0.5) colgap(0.5) symysize(1) symxsize(1))  
+
+note(" ") 
 ;
+
+
+
+*Graph 1
+
+#delimit ;
+
+graph hbar $var1 
+
+if region=="AMAZONAS" | region=="ANCASH" | region=="APURIMAC " | region=="AREQUIPA" |  region=="AYACUCHO" | region=="CAJAMARCA"  | region=="CALLAO"
+
+	| region=="CUSCO" | region=="HUANCAVELICA" | region=="HUANUCO"
+
+
+, by(region) 
+
+legend(label (1 "RENIEC") label (2 "Iglesia_Católica") label(3 "MINEDU")  label(4 "FFAA") label (5 "Radio_Televisión") label(6 "Defensoria") label( 7 "PNP") 
+
+			  label(8 "Distrital") label (9 "Prensa_Escrita") label (10 "Provincial") label(11 "Nacional") label(12 "Congreso") label(13 "Partidos_Políticos")
+
+	size(tiny) cols(7) rowgap(0.5) colgap(0.5) symysize(1) symxsize(1))  
+;
+
+*Graph 2
+
+
+#delimit ;
+
+graph hbar $var1 
+
+if region=="ICA" | region=="JUNIN" | region=="LA LIBERTAD " | region=="LAMBAYEQUE |  region=="LIMA" | region=="LORETO"  | region=="CALLAO"
+
+	| region=="CUSCO" | region=="HUANCAVELICA" | region=="HUANUCO"
+
+
+, by(region) 
+
+legend(label (1 "RENIEC") label (2 "Iglesia_Católica") label(3 "MINEDU")  label(4 "FFAA") label (5 "Radio_Televisión") label(6 "Defensoria") label( 7 "PNP") 
+
+			  label(8 "Distrital") label (9 "Prensa_Escrita") label (10 "Provincial") label(11 "Nacional") label(12 "Congreso") label(13 "Partidos_Políticos")
+
+	size(tiny) cols(7) rowgap(0.5) colgap(0.5) symysize(1) symxsize(1))  
+;
+
+
+
+
 
 
 
