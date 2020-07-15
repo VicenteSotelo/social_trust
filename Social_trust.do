@@ -1,8 +1,8 @@
 
 
-#R
+*R
 
-setwd("/Users/luisvicentesotelofarfan/Google Drive/III.ComponenteProfesional/Repo/ENAHO/2019/687-Modulo85")
+/*setwd("/Users/luisvicentesotelofarfan/Google Drive/III.ComponenteProfesional/Repo/ENAHO/2019/687-Modulo85")
 
 library(foreign)
 
@@ -13,6 +13,7 @@ base_2<-read.spss ("Enaho01B-2019-2.sav", use.value.labels=TRUE, to.data.frame=T
 write.dta(base_2, file="base2.dta")
 
 list.files()
+*/
 
 *Stata
 
@@ -77,81 +78,26 @@ replace region=25			if UBIGEO>=1246 & UBIGEO<=1259
 label variable region "regiones" /*seting nd execution labes variable*/
 
 
-#delimit ;						/*seting label values*/
+*#delimit ;						/*seting label values*/
 
-label define regiones
-
-1 "AMAZONAS" 	2 "ANCASH"
-3 "APURIMAC" 	4 "AREQUIPA"
-5 "AYACUCHO" 	6 "CAJAMARCA"
-7 "CALLAO"
-8 "CUSCO" 	    9 "HUANCAVELICA"
-10 "HUANUCO" 	11 "ICA"
-12 "JUNIN"   	13 "LA LIBERTAD"
-14 "LAMBAYEQUE" 15 "LIMA"
-16 "LORETO"  	17 "MADRE DE DIOS"
-18 "MOQUEGUA"   19 "PASCO"
-20 "PIURA"   	21 "PUNO"
-22 "SAN MARTIN"  23 "TACNA"
+label define regiones ///
+///
+1 "AMAZONAS" 	2 "ANCASH"  ///
+3 "APURIMAC" 	4 "AREQUIPA" ///
+5 "AYACUCHO" 	6 "CAJAMARCA" ///
+7 "CALLAO" ///
+8 "CUSCO" 	    9 "HUANCAVELICA" ///
+10 "HUANUCO" 	11 "ICA" ///
+12 "JUNIN"   	13 "LA LIBERTAD" ///
+14 "LAMBAYEQUE" 15 "LIMA" ///
+16 "LORETO"  	17 "MADRE DE DIOS" ///
+18 "MOQUEGUA"   19 "PASCO" ///
+20 "PIURA"   	21 "PUNO" ///
+22 "SAN MARTIN"  23 "TACNA" ///
 24 "TUMBES"  	25 "UCAYALI"
-;
-
+*;
 
 label values region regiones   /*execution label values*/
-
-
-/*
-gen region="AMAZONAS" 				if UBIGEO>=1 & UBIGEO<=51
-
-replace region="ANCASH" 			if UBIGEO>=52 & UBIGEO<=128
-
-replace region="APURIMAC" 			if UBIGEO>=129 & UBIGEO<=187
-
-replace region="AREQUIPA" 			if UBIGEO>=188 & UBIGEO<=252
-
-replace region="AYACUCHO" 			if UBIGEO>=253 & UBIGEO<=325
-
-replace region="CAJAMARCA" 			if UBIGEO>=326 & UBIGEO<=404
-
-replace region="CALLAO" 			    if UBIGEO>=405 & UBIGEO<=411
-
-replace region="CUSCO" 	    		if UBIGEO>=412 & UBIGEO<=487
-
-replace region="HUANCAVELICA" 			if UBIGEO>=488 & UBIGEO<=552
-
-replace region="HUANUCO" 			    if UBIGEO>=553 & UBIGEO<=617
-
-replace region="ICA" 			    if UBIGEO>=618 & UBIGEO<=654
-
-replace region="JUNIN" 	    if UBIGEO>=655 & UBIGEO<=728
-
-replace region="LA LIBERTAD" 		if UBIGEO>=729 & UBIGEO<=789
-
-replace region="LAMBAYEQUE" 			    if UBIGEO>=790 & UBIGEO<=825
-
-replace region="LIMA" 			if UBIGEO>=826 & UBIGEO<=935
-
-replace region="LORETO"      if UBIGEO>=934 & UBIGEO<=977
-
-replace region="MADRE DE DIOS" 			if UBIGEO>=978 & UBIGEO<=988
-
-replace region="MOQUEGUA" 			    if UBIGEO>=989 & UBIGEO<=1007
-
-replace region="PASCO" 			    if UBIGEO>=1008 & UBIGEO<=1035
-
-replace region="PIURA" 			    if UBIGEO>=1036 & UBIGEO<=1086
-
-replace region="PUNO" 	    if UBIGEO>=1087 & UBIGEO<=1153
-
-replace region="SAN MARTIN" 			    if UBIGEO>=1154 & UBIGEO<=1212
-
-replace region="TACNA" 			if UBIGEO>=1213 & UBIGEO<=1232
-
-replace region="TUMBES" 			if UBIGEO>=1233 & UBIGEO<=1245
-
-replace region="UCAYALI" 			if UBIGEO>=1246 & UBIGEO<=1259
-
-*/
 
 
 * Argument: Social Trust
@@ -166,12 +112,6 @@ foreach p in 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 {
 }
 
 *Function: mean
-
-*svyset CONGLOME [pweight=FAMIEGOB07], strata(ESTRATO)
-
-*svy: mean d_01
-
-*collapse (mean) d_01 [iw=FAMIEGOB07]
 
 collapse (mean) d_* [iw=FAMIEGOB07], by (region)
 
@@ -218,82 +158,40 @@ rename d_20 SUNAT
 
 rename d_21 Comisión_Anticorrupción
 
-
-label var JNE JNE
-
-label var ONPE ONPE
-
-label var RENIEC RENIEC
-
-label var Prov Prov
-
-label var Dist Dist
-
-label var PNP PNP
-
-label var FFAA FFAA
-
-label var Nac Nac
-
-label var PJ PJ
-
-label var MINEDU MINEDU
-
-label var Defens Defens
-
-label var Congreso Congreso
-
-label var Partidos Partidos
-
-label var Prensa_Escrita Prensa_Escrita
-
-label var Radio_Televisión Radio_Televisión
-
-label var Iglesia_Católica Iglesia_Católica
-
-label var Procuradoría Procuradoría
-
-label var Fiscalía Fiscalía
-
-label var Contraloría Contraloría
-
-label var SUNAT SUNAT
-
-label var Comisión_Anticorrupción Comisión_Anticorrupción
-
 *Graphs:
-
 
 global var1 RENIEC Iglesia_Católica MINEDU FFAA Radio_Televisión Defens PNP Dist Prensa_Escrita Prov Nac Congreso Partidos
 
 
 *Graph 1
 
+
 #delimit ;
 
 graph hbar $var1 
 
-if region>=1 & region<=12, by(region, note("Fuente: Módulo -ENAHO") caption("Preguntas P22-P11") )
+if region>=1 & region<=12, by(region, note("Fuente: Módulo 5-ENAHO 2019") title("Índice de confianza en las organizaciones") )
 
 legend(label (1 "RENIEC") label (2 "Iglesia_Católica") label(3 "MINEDU")  label(4 "FFAA") label (5 "Radio_Televisión") label(6 "Defensoria") label( 7 "PNP") 
 
 			  label(8 "Distrital") label (9 "Prensa_Escrita") label (10 "Provincial") label(11 "Nacional") label(12 "Congreso") label(13 "Partidos_Políticos")
 	
-	  size(small) cols(7) rowgap(0.5) colgap(0.5) symysize(2) symxsize(2) )
+	  size(vsmall) cols(7) rowgap(0.5) colgap(0.5) symysize(2) symxsize(2) )
 
 ;
 
 
 *Graph 2
 
-#delimit ;
+/*#delimit ;
 
 graph hbar $var1 
 
 if region>=13 & region<=25
 
-, by(region, note(""))
+, by(region, note("Fuente:ENAHO 2019-Módulo 5 (preguntas c/respuesta múltple)" ))
 
+title ("Confianza de los peruanos")
 
 legend(label (1 "RENIEC") label (2 "Iglesia_Católica") label(3 "MINEDU")  label(4 "FFAA") label (5 "Radio_Televisión") label(6 "Defensoria") label( 7 "PNP") 
 
@@ -303,7 +201,7 @@ legend(label (1 "RENIEC") label (2 "Iglesia_Católica") label(3 "MINEDU")  labe
 	  size(small) cols(7) rowgap(0.5) colgap(0.5) symysize(2) symxsize(2))  
 
 ;
-
+*/
 
 
 
