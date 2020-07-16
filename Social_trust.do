@@ -82,13 +82,13 @@ label variable region "regiones" /*seting nd execution labes variable*/
 
 label define regiones ///
 ///
-1 "AMAZONAS" 	2 "ANCASH"  ///
-3 "APURIMAC" 	4 "AREQUIPA" ///
+1 "AMAZONAS" 	2 "ÁNCASH"  ///
+3 "APURÍMAC" 	4 "AREQUIPA" ///
 5 "AYACUCHO" 	6 "CAJAMARCA" ///
 7 "CALLAO" ///
 8 "CUSCO" 	    9 "HUANCAVELICA" ///
-10 "HUANUCO" 	11 "ICA" ///
-12 "JUNIN"   	13 "LA LIBERTAD" ///
+10 "HUÁNUCO" 	11 "ICA" ///
+12 "JUNÍN"   	13 "LA LIBERTAD" ///
 14 "LAMBAYEQUE" 15 "LIMA" ///
 16 "LORETO"  	17 "MADRE DE DIOS" ///
 18 "MOQUEGUA"   19 "PASCO" ///
@@ -102,14 +102,17 @@ label values region regiones   /*execution label values*/
 
 * Argument: Social Trust
 
-foreach p in 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 {
+global num 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21
 
-	gen d_`p' = (P1_`p'==3 | P1_`p'==4)
+foreach i of global num {
+
+	gen d_`i' 			= (P1_`i'==3 | P1_`i'==4)
 	
-	replace d_`p' = .  if P1_`p'==5 
+	replace d_`i' 		= .  if P1_`i'==5 
 	
-	replace d_`p' = .  if P1_`p'==. 
+	replace d_`i' 		= .  if P1_`i'==. 
 }
+
 
 *Function: mean
 
@@ -122,25 +125,25 @@ rename d_02 ONPE
 
 rename d_03 RENIEC
 
-rename d_04 Prov
+rename d_04 Municipio_Provincial
 
-rename d_05 Dist
+rename d_05 Municipio_Distrital
 
 rename d_06 PNP
 
 rename d_07 FFAA
 
-rename d_08 Nac
+rename d_08 Gobierno_Nacional
 
-rename d_09 PJ
+rename d_09 Poder_Judicial
 
-rename d_10 MINEDU
+rename d_10 MINEDU_centros_educativos
 
-rename d_11 Defens
+rename d_11 Defensoría_Pueblo
 
 rename d_12 Congreso
 
-rename d_13 Partidos
+rename d_13 Partidos_Políticos
 
 rename d_14 Prensa_Escrita
 
@@ -148,7 +151,7 @@ rename d_15 Radio_Televisión
 
 rename d_16 Iglesia_Católica
 
-rename d_17 Procuradoría
+rename d_17 Procuradoría_Anticorrupción
 
 rename d_18 Fiscalía
 
@@ -160,7 +163,7 @@ rename d_21 Comisión_Anticorrupción
 
 *Graphs:
 
-global var1 RENIEC Iglesia_Católica MINEDU FFAA Radio_Televisión JNE PJ Nac Congreso Partidos
+global var1 RENIEC Iglesia_Católica  MINEDU_centros_educativos FFAA Radio_Televisión JNE Poder_Judicial Gobierno_Nacional Congreso Partidos_Políticos
 
 
 *Graph 1
@@ -171,8 +174,11 @@ graph hbar $var1
 
 if region>=1 & region<=12, by(region, note("Fuente: Módulo 5-ENAHO 2019") title("Índice de confianza en las organizaciones") )
 
-legend( size(vsmall) cols(7) rowgap(0.5) colgap(0.5) symysize(2) symxsize(2) )
+legend( label (1 "RENIEC") label (2 "Iglesia_Católica") label(3 "MINEDU (centros_educativos)")  label(4 "FFAA") label (5 "Radio_Televisión") label(6 "JNE") 
 
+			label( 7 "Poder_Judicial") label(8 "Gobierno_Nacional") label (9 "Congreso") label (10 "Partidos_Políticos") 
+
+	size(vsmall) cols(7) rowgap(0.5) colgap(0.5) symysize(2) symxsize(2) )
 ;
 
 
