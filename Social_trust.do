@@ -160,10 +160,22 @@ rename d_21 Comisión_Anticorrupción
 
 *Graphs:
 
-global var1 RENIEC Iglesia_Católica MINEDU FFAA Radio_Televisión Defens PNP Dist Prensa_Escrita Prov Nac Congreso Partidos
+global var1 RENIEC Iglesia_Católica MINEDU FFAA Radio_Televisión JNE PJ Nac Congreso Partidos
 
 
 *Graph 1
+
+#delimit ;
+
+graph hbar $var1 
+
+if region>=1 & region<=12, by(region, note("Fuente: Módulo 5-ENAHO 2019") title("Índice de confianza en las organizaciones") )
+
+legend( size(vsmall) cols(7) rowgap(0.5) colgap(0.5) symysize(2) symxsize(2) )
+
+;
+
+
 
 
 #delimit ;
@@ -180,6 +192,63 @@ legend(label (1 "RENIEC") label (2 "Iglesia_Católica") label(3 "MINEDU")  labe
 
 ;
 
+
+*Validating sample of questions
+
+		#delimit ;
+
+
+		graph hbar  
+
+		JNE
+
+		ONPE
+
+		RENIEC
+
+		Prov
+
+		Dist
+
+		PNP
+
+		FFAA
+
+		Nac
+
+		PJ
+
+		MINEDU
+
+		Defens
+
+		Congreso
+
+		Partidos
+
+		Prensa_Escrita
+
+		Radio_Televisión
+
+		Iglesia_Católica
+
+		Procuradoría
+
+		Fiscalía
+
+		Contraloría
+
+		SUNAT
+
+		Comisión_Anticorrupción if region==8, over(region,sort(1))
+
+		legend (size(tiny) cols(7) rowgap(0.5) colgap(0.5) symysize(2) symxsize(2) )
+
+
+
+		;
+
+graph hbar wage, over(occ, sort(1)) by(union)
 
 *Graph 2
 
