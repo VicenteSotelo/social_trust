@@ -36,37 +36,37 @@ replace region=5			if UBIGEO>=253 & UBIGEO<=325
 
 replace region=6			if UBIGEO>=326 & UBIGEO<=404
 
-replace region=7			    if UBIGEO>=405 & UBIGEO<=411
+replace region=7			if UBIGEO>=405 & UBIGEO<=411
 
-replace region=8	    		if UBIGEO>=412 & UBIGEO<=487
+replace region=8	        if UBIGEO>=412 & UBIGEO<=487
 
 replace region=9			if UBIGEO>=488 & UBIGEO<=552
 
-replace region=10			    if UBIGEO>=553 & UBIGEO<=617
+replace region=10			if UBIGEO>=553 & UBIGEO<=617
 
-replace region=11 			    if UBIGEO>=618 & UBIGEO<=654
+replace region=11 			if UBIGEO>=618 & UBIGEO<=654
 
-replace region=12 	    if UBIGEO>=655 & UBIGEO<=728
+replace region=12 	        if UBIGEO>=655 & UBIGEO<=728
 
-replace region=13 		if UBIGEO>=729 & UBIGEO<=789
+replace region=13 		    if UBIGEO>=729 & UBIGEO<=789
 
-replace region=14			    if UBIGEO>=790 & UBIGEO<=825
+replace region=14			if UBIGEO>=790 & UBIGEO<=825
 
-replace region=15		if UBIGEO>=826 & UBIGEO<=935
+replace region=15		    if UBIGEO>=826 & UBIGEO<=935
 
-replace region=16     if UBIGEO>=934 & UBIGEO<=977
+replace region=16           if UBIGEO>=934 & UBIGEO<=977
 
 replace region=17			if UBIGEO>=978 & UBIGEO<=988
 
 replace region=18		    if UBIGEO>=989 & UBIGEO<=1007
 
-replace region=19			    if UBIGEO>=1008 & UBIGEO<=1035
+replace region=19			if UBIGEO>=1008 & UBIGEO<=1035
 
-replace region=20 			    if UBIGEO>=1036 & UBIGEO<=1086
+replace region=20 			if UBIGEO>=1036 & UBIGEO<=1086
 
-replace region=21 	    if UBIGEO>=1087 & UBIGEO<=1153
+replace region=21 	        if UBIGEO>=1087 & UBIGEO<=1153
 
-replace region= 22 			    if UBIGEO>=1154 & UBIGEO<=1212
+replace region= 22 			if UBIGEO>=1154 & UBIGEO<=1212
 
 replace region=23 			if UBIGEO>=1213 & UBIGEO<=1232
 
