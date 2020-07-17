@@ -172,7 +172,7 @@ global var1 RENIEC Iglesia_Católica  MINEDU_centros_educativos FFAA Radio_Tele
 
 graph hbar $var1 
 
-if region>=1 & region<=12, by(region, note("Fuente: Módulo 5-ENAHO 2019") title("Índice de confianza en las organizaciones") )
+if region>=1 & region<=12, by(region, note("Fuente: Módulo 5-ENAHO 2019 (repuesta múltiple).") caption (Repositorio:https://github.com/VicenteSotelo/Social_trust, size(*0.75) ) title("Índice de confianza en las organizaciones") )
 
 legend( label (1 "RENIEC") label (2 "Iglesia_Católica") label(3 "MINEDU (centros_educativos)")  label(4 "FFAA") label (5 "Radio_Televisión") label(6 "JNE") 
 
@@ -182,101 +182,25 @@ legend( label (1 "RENIEC") label (2 "Iglesia_Católica") label(3 "MINEDU (centr
 ;
 
 
-
-
 #delimit ;
 
 graph hbar $var1 
 
-if region>=1 & region<=12, by(region, note("Fuente: Módulo 5-ENAHO 2019") title("Índice de confianza en las organizaciones") )
+if region>=13 & region<=25, by(region, note("Fuente: Módulo 5-ENAHO 2019 (repuesta múltiple).") caption (Repositorio:https://github.com/VicenteSotelo/Social_trust, size(*0.75) ) title("Índice de confianza en las organizaciones") )
 
-legend(label (1 "RENIEC") label (2 "Iglesia_Católica") label(3 "MINEDU")  label(4 "FFAA") label (5 "Radio_Televisión") label(6 "Defensoria") label( 7 "PNP") 
+legend( label (1 "RENIEC") label (2 "Iglesia_Católica") label(3 "MINEDU (centros_educativos)")  label(4 "FFAA") label (5 "Radio_Televisión") label(6 "JNE") 
 
-			  label(8 "Distrital") label (9 "Prensa_Escrita") label (10 "Provincial") label(11 "Nacional") label(12 "Congreso") label(13 "Partidos_Políticos")
-	
-	  size(vsmall) cols(7) rowgap(0.5) colgap(0.5) symysize(2) symxsize(2) )
+			label( 7 "Poder_Judicial") label(8 "Gobierno_Nacional") label (9 "Congreso") label (10 "Partidos_Políticos") 
+
+	size(vsmall) cols(7) rowgap(0.5) colgap(0.5) symysize(2) symxsize(2) )
+;
+
 
 ;
 
 
-*Validating sample of questions
-
-		#delimit ;
 
 
-		graph hbar  
-
-		JNE
-
-		ONPE
-
-		RENIEC
-
-		Prov
-
-		Dist
-
-		PNP
-
-		FFAA
-
-		Nac
-
-		PJ
-
-		MINEDU
-
-		Defens
-
-		Congreso
-
-		Partidos
-
-		Prensa_Escrita
-
-		Radio_Televisión
-
-		Iglesia_Católica
-
-		Procuradoría
-
-		Fiscalía
-
-		Contraloría
-
-		SUNAT
-
-		Comisión_Anticorrupción if region==8, over(region,sort(1))
-
-		legend (size(tiny) cols(7) rowgap(0.5) colgap(0.5) symysize(2) symxsize(2) )
-
-
-
-		;
-
-graph hbar wage, over(occ, sort(1)) by(union)
-
-*Graph 2
-
-/*#delimit ;
-
-graph hbar $var1 
-
-if region>=13 & region<=25
-
-, by(region, note("Fuente:ENAHO 2019-Módulo 5 (preguntas c/respuesta múltple)" ))
-
-title ("Confianza de los peruanos")
-
-legend(label (1 "RENIEC") label (2 "Iglesia_Católica") label(3 "MINEDU")  label(4 "FFAA") label (5 "Radio_Televisión") label(6 "Defensoria") label( 7 "PNP") 
-
-			  label(8 "Distrital") label (9 "Prensa_Escrita") label (10 "Provincial") label(11 "Nacional") label(12 "Congreso") label(13 "Partidos_Políticos")
-
-	
-	  size(small) cols(7) rowgap(0.5) colgap(0.5) symysize(2) symxsize(2))  
-
-;
-*/
 
 
 
