@@ -182,6 +182,8 @@ legend( label (1 "RENIEC") label (2 "Iglesia_Católica") label(3 "MINEDU (centr
 ;
 
 
+*Graph 2
+
 #delimit ;
 
 graph hbar $var1 
@@ -196,7 +198,6 @@ legend( label (1 "RENIEC") label (2 "Iglesia_Católica") label(3 "MINEDU (centr
 ;
 
 
-;
 
 
 
