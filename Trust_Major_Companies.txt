@@ -1,0 +1,114 @@
+
+
+******************************************************************************************
+*What? 		Trust on Major Companies
+*Author		Vicente Sotelo
+*Date 		09/20
+******************************************************************************************
+
+------------------------------------------------
+#Using stata:  Loading + Transforming  DATA
+------------------------------------------------
+clear
+
+use "/Users/luisvicentesotelofarfan/Google Drive/III.ComponenteProfesional/Repo/WorldValueSurvey/WVS_Cross-National_Wave_7_stata_v1_4.dta"
+
+*Samplig cross-section data
+
+gen d_sample =(B_COUNTRY==604 | B_COUNTRY==32 |  B_COUNTRY==68 |  B_COUNTRY==76|  B_COUNTRY==152|  B_COUNTRY==218 | B_COUNTRY==484 | B_COUNTRY==528|  B_COUNTRY==558 | B_COUNTRY==600| B_COUNTRY==858 | B_COUNTRY==862 | B_COUNTRY==630)& (A_YEAR==2018)
+
+*Transforming variable
+
+*Banks
+gen i_trust_banks =  1 if Q78==1 | Q78==2 
+
+replace i_trust_banks= 0 if Q78==3 | Q78==4  
+
+*MajorCompanies
+gen i_trust_MajorCompanies =  1 if Q77==1 | Q77==2 
+
+replace i_trust_MajorCompanies= 0 if Q77==3 | Q77==4 
+
+*Governmet
+gen i_trust_Governmet =  1 if Q71==1 | Q77==2 
+
+replace i_trust_Governmet= 0 if Q71==3 | Q77==4 
+
+* Clustering data
+
+collapse (mean) i_* if d_sample==1 [iw=W_WEIGHT], by(B_COUNTRY)
+
+save trsut_to_visual.dta
+
+------------------------------------------------
+#Using R:  Data Visualization
+------------------------------------------------
+
+setwd("/Users/luisvicentesotelofarfan/Google Drive/III.ComponenteProfesional/Repo/WorldValueSurvey")
+
+library(ggplot2)
+
+library(dplyr)
+
+library ("tidyverse")
+
+library (haven)
+
+library("gridExtra")
+
+library(maps)
+
+
+#Loading data
+
+df <- read_dta("trsut_to_visual.dta")
+
+#Ordering values: with(df, reorder()) ~SORT
+
+df$B_COUNTRY = with(df, reorder(B_COUNTRY,i_trust_MajorCompanies,mean))
+
+
+#Changing factor values
+
+levels(df$B_COUNTRY)[levels(df$B_COUNTRY)=="76"] <-"Brazil"
+
+levels(df$B_COUNTRY)[levels(df$B_COUNTRY)=="152"] <-"Chile"
+
+levels(df$B_COUNTRY)[levels(df$B_COUNTRY)=="604"] <-"Perú"
+
+levels(df$B_COUNTRY)[levels(df$B_COUNTRY)=="484"] <-"México"
+
+levels(df$B_COUNTRY)[levels(df$B_COUNTRY)=="630"] <-"Puerto Rico"
+
+levels(df$B_COUNTRY)[levels(df$B_COUNTRY)=="218"] <-"Ecuador"
+
+#Visualization
+
+ggplot(data=df) +
+
+geom_bar(mapping=aes(x=B_COUNTRY, y=i_trust_MajorCompanies), stat = "identity", fill=ifelse(df$B_COUNTRY=='Perú', 'red', 'gray') ) +
+
+coord_flip() + 
+
+labs(
+	title="Índice de confianza en las grandes empresas",
+
+	subtitle="2018",
+
+	caption="Repositorio:https://github.com/VicenteSotelo/Trust. Fuente:World Value Survey"
+) +
+
+xlab("") + 
+
+ylab("Valor de índice") + 
+
+theme(plot.title = element_text(hjust = 0.5)) +
+
+theme(plot.subtitle = element_text(hjust = 0.5))
+
+
+
+
+
+
+

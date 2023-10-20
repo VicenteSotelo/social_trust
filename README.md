@@ -1,4 +1,3 @@
-# Social_trust
-Social_trust
+# Trust
 
-source: modulo de Gobernanza de ENAHO
+source: https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp
